@@ -3,13 +3,13 @@ module.exports = {
     pluginOptions: {
         electronBuilder: {
             builderOptions: {
-                appId: "freewlt",
+                appId: "com.example.app",
                 productName: "wltDemo", // 项目名，也是生成的安装文件名，即wyDemo.exe
-                copyright: "wlt Copyright © 2020", // 版权信息
+                copyright: "wlt Copyright © 2022", // 版权信息
                 "files": [
                     "./**/*"
                 ], 
-                nodeIntegration: true,
+                // nodeIntegration: true,
                 extraFiles: [ // 把指定的资源复制到程序根目录，即把server文件夹的内容复制到程序根目录，这里server文件夹下的内容相当于我的后台，我在background.js中有相应的处理。
                     "./public"
                 ],
@@ -51,4 +51,5 @@ module.exports = {
             template: "public/index.html",
         },
     },
+    productionSourceMap: true,
 };

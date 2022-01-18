@@ -1,8 +1,8 @@
 module.exports = {
-    "OperatingStatus": "OperatingStatus",
-    "CashierBusiness": "CashierBusiness",
-    "FuelCardBusiness": "FuelCardBusiness",
-    "QueryReport ": "QueryReport",
+    "OperatingStatus": "Operating",
+    "CashierBusiness": "Cashier",
+    "FuelCardBusiness": "FuelCard",
+    "QueryReport": "QueryReport",
     "SysConfig": "SysConfig",
     "shiftStatus": "shiftStatus"
 };
