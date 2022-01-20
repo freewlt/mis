@@ -5,7 +5,7 @@
 import axios from "axios";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 //  import qs from "qs";
- 
+
 const config = {
     baseURL: process.env.VUE_APP_URL,
     timeout: 60000,
@@ -33,9 +33,7 @@ service.interceptors.request.use(
         //  config.paramsSerializer = (params) => qs.stringify(params, {
         //      arrayFormat: "repeat",
         //  });
- 
-        console.log(config);
- 
+
         return config;
     },
     err => {
@@ -47,6 +45,7 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
     res => {
+        // logger.main.debug('message', 'info');
         return res;
     },
     err => {

@@ -46,7 +46,6 @@ import { Setting } from '@element-plus/icons-vue';
 import { reactive, toRefs, onMounted } from 'vue';
 import { useI18n } from "vue-i18n";
 import i18n from '../../language/i18n.js';
-import logger from "./../../utils/logUtils";
 
 export default {
     name: 'headBox',
@@ -113,15 +112,16 @@ export default {
             }
             state.status = c;
             getData();
-            logger.info("locale==>" + JSON.stringify(state.status));
         };
+        const handleSelect = async () => {};
 
         onMounted(async () => {
             getData();
         });
         return {
             ...toRefs(state),
-            handleClick
+            handleClick,
+            handleSelect
         };
     },
 };

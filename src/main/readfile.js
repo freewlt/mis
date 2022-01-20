@@ -17,8 +17,8 @@ ipcMain.on("asynchronous-message", function(event, arg) {
 
 ipcMain.on('writeFile', function(event, arg) {
     let jsonObj = JSON.stringify(arg);
-    let file = process.cwd() + "/publdsic/config/config.json";
-    fs.writeFile(file, jsonObj, function (err) {
+    let file = process.cwd() + "/public/config/config.json";
+    fs.writeFile(file, jsonObj, function(err) {
         if(err){
             event.sender.send("whiteFile-reply", "写入失败");
         }else{
@@ -31,6 +31,6 @@ ipcMain.on('writeFile', function(event, arg) {
             });
             event.sender.send('whiteFile-reply', "写入成功");
         }
-	})
-})
+    });
+});
 

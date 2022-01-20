@@ -7,6 +7,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 import "./main/readfile";
 import "./main/store";
+import logger from "./main/log4js";
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -93,6 +94,8 @@ app.on('ready', async () => {
             console.error('Vue Devtools failed to install:', e.toString());
         }
     }
+    logger.main.debug('message', 'info');
+    logger.LOG_PATH;
     createWindow();
 });
 

@@ -22,10 +22,6 @@ export default {
         // EleStore,
         // Socket
     },
-    data(){
-        return {
-        };
-    },
 };
 </script>
 

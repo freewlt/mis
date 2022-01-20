@@ -8,15 +8,10 @@ import i18n from './language/i18n';
 
 import "./assets/css/common.css";
 
-global.logger = require('./config/log4js').logger;
-const  httpLogger = require('./config/log4js').httpLogger;
-
-
 const app = createApp(App);
 
 app.use(router);
 app.use(i18n);
-app.use(httpLogger);
 
 app.use(ElementPlus, { size: "small" });
 

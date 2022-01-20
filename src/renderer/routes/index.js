@@ -10,7 +10,7 @@ const UnloadRecord = () => import("@/renderer/views/system/unload/unloadRecord")
 const routes = [
     {
         path: "/",
-        component: Home
+        component: Login
     },
     {
         path: "/login",
