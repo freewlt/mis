@@ -10,7 +10,7 @@
                 mode="horizontal" @select="handleSelect">
                     <el-menu-item v-for="item in navMenuList" :index="item.frontPath" :key="item.id">
                         <router-link :to="{ path:item.frontPath }">
-                            <el-icon><setting /></el-icon>
+                            <icon-box :name="item.icon"/>
                             <span>{{ item.name }}</span>
                         </router-link>
                     </el-menu-item>
@@ -42,15 +42,15 @@
 </template>
 
 <script>
-import { Setting } from '@element-plus/icons-vue';
 import { reactive, toRefs, onMounted } from 'vue';
 import { useI18n } from "vue-i18n";
 import i18n from '../../language/i18n.js';
+import IconBox from "../iconBox";
 
 export default {
     name: 'headBox',
     components: {
-        Setting,
+        IconBox
     },
     setup(){
         const { locale } = useI18n();
@@ -81,23 +81,28 @@ export default {
             state.navMenuList= [
                 {
                     name: i18n.global.t('OperatingStatus'),
-                    frontPath: "/home",
+                    frontPath: "/Operating",
+                    icon: "tools"
                 },
                 {
                     name: i18n.global.t('CashierBusiness'),
-                    frontPath: "/home2",
+                    frontPath: "/cashier",
+                    icon: "WalletFilled"
                 },
                 {
                     name: i18n.global.t('FuelCardBusiness'),
-                    frontPath: "/home3",
+                    frontPath: "/Operating",
+                    icon: "CreditCard"
                 },
                 {
                     name: i18n.global.t('QueryReport'),
-                    frontPath: "/home4",
+                    frontPath: "/Operating",
+                    icon: "Tickets"
                 },
                 {
                     name: i18n.global.t('SysConfig'),
-                    frontPath: "/system"
+                    frontPath: "/system",
+                    icon: "Setting"
                 },
             ];
         };
@@ -139,7 +144,6 @@ export default {
         width: 100%;
         height: 103px;
         padding: 0 5px;
-        background: linear-gradient(44deg, #1B70F7 0%, #19B2DB 100%);
         .logoBox {
             .logoPic {
                 width: 100%;
@@ -158,6 +162,8 @@ export default {
                     &:hover {
                         background: none;
                     }
+                    border: none;
+                    background: none;
                 }
                 a {
                     display: flex;

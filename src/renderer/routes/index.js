@@ -2,15 +2,18 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 const Login = () => import("@/renderer/views/login");
 const Home = () => import("@/renderer/views/home");
+const Welcome = () => import("@/renderer/views/welcome");
+const Error = () => import("@/renderer/views/404");
+const Operating = () => import("@/renderer/views/operating/index");
 const System = () => import("@/renderer/views/system");
 const UnloadManage = () => import("@/renderer/views/system/unload/unloadManage");
 const UnloadRecord = () => import("@/renderer/views/system/unload/unloadRecord");
-
+const Cashier = () => import("@/renderer/views/cashier");
 
 const routes = [
     {
         path: "/",
-        component: Login
+        component: Home,
     },
     {
         path: "/login",
@@ -20,22 +23,61 @@ const routes = [
         path: "/home",
         name: "home",
         component: Home,
+        meta: {
+            title: '首页'
+        },
         children: [
             {
-                path: "",
-                component: System
+                path: "/Operating",
+                component: Operating,
+                meta: {
+                    title: '经营状况'
+                },
+            },
+            {
+                path: "/cashier",
+                component: Cashier,
+                meta: {
+                    title: '收银业务'
+                },
+            },
+            {
+                path: "/Operating",
+                component: Operating,
+            },
+            {
+                path: "/Operating",
+                component: Operating,
             },
             {
                 path: "/system",
                 component: System,
+                meta: {
+                    title: '系统设置'
+                },
                 children: [
                     {
+                        path: "",
+                        component: Welcome
+                    },
+                    {
                         path: "unloadManage",
-                        component: UnloadManage
+                        component: UnloadManage,
+                        meta: {
+                            title: '卸油操作'
+                        },
                     },
                     {
                         path: "unloadRecord",
-                        component: UnloadRecord
+                        component: UnloadRecord,
+                        meta: {
+                            title: '卸油记录'
+                        },
+                    },
+                    {
+                        path: "*",
+                        component: Error,
+                        meta: {title: "404"}
                     }
                 ]
             },

@@ -186,3 +186,7 @@ button {
 i {
   font-style: normal;
 }
+
+#app{
+  background: linear-gradient(44deg, #1B70F7 0%, #19B2DB 100%);
+}
