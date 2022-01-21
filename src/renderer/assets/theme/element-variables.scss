@@ -3,6 +3,3 @@ $--color-primary: teal; /* icon font 路径, 必须提供 */
 $--font-path: '~element-plus/lib/theme-chalk/fonts';
 @use '~element-plus/packages/theme-chalk/src/index';
 
-.el-table--small .el-table__cell{
-    padding: 18px 0;
-}

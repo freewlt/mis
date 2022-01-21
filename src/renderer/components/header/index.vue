@@ -106,8 +106,8 @@ export default {
                 },
             ];
         };
-        const handleClick = async (c) =>
-        {
+
+        const handleClick = async (c) => {
             if(c === "1"){
                 state.language = "中文";
                 locale.value = "zh";
@@ -118,11 +118,13 @@ export default {
             state.status = c;
             getData();
         };
+
         const handleSelect = async () => {};
 
         onMounted(async () => {
             getData();
         });
+        
         return {
             ...toRefs(state),
             handleClick,

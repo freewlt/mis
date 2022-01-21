@@ -94,7 +94,7 @@ app.on('ready', async () => {
             console.error('Vue Devtools failed to install:', e.toString());
         }
     }
-    logger.main.debug('message', 'info');
+    logger.main.debug(process.env);
     logger.LOG_PATH;
     createWindow();
 });
