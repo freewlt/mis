@@ -14,7 +14,7 @@
                 </el-table>
             </div>
             <ul class="gum">
-                <li class="gumItem" v-for="item in gumList" :key="item.id">
+                <li class="gumItem" v-for="item in gumList" :key="item.id" @click="gumBtn(item)">
                     <div class="oilDetail">
                         <span class="symbol">
                             <i></i>
@@ -38,6 +38,14 @@
                 <el-table :data="tableDataDetail" class="tableData">
                     <el-table-column v-for="(item, index) in tableHeaderDetail" :key="index" 
                         :prop="item.prop" :label="item.label" :align="item.align" :width="item.width" />
+                     <el-table-column label="数量" align="center" class="subtotal">
+                        <template #default="scope">
+                            <el-button>+</el-button>
+                            <el-input type="number" v-model="scope.row.price" oninput=" scope.row.price = inputNum(input)"/>
+                            <el-button>-</el-button>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="小计" prop = "price" align="center"/>
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
                             <icon-box name="delete" :size="20" @click="deleteBtn(scope.row)"></icon-box>
@@ -49,7 +57,65 @@
                 <el-input class="codeInput" v-model="code" placeholder="请扫描助记码" clearable />
                 <el-button class="codeBtn">助记码</el-button>
             </div>
+            <div class="orderDetail">
+                <ul class="order">
+                    <li class="item">
+                        <span class="title">应收金额</span>
+                        <span class="value">￥102.00</span>
+                    </li>
+                    <li class="item">
+                        <span class="title">订单优惠</span>
+                        <span class="value">￥102.00</span>
+                    </li>
+                    <li class="item">
+                        <span class="title">纸质优惠</span>
+                        <span class="value">￥102.00</span>
+                    </li>
+                    <li class="item">
+                        <span class="title">红包优惠</span>
+                        <span class="value">{{ orderDetailList.price }}</span>
+                    </li>
+                    <li class="item">
+                        <span class="title">积分扣除</span>
+                        <span class="value">{{ orderDetailList.price }}</span>
+                    </li>
+                    <li class="item">
+                        <span class="title">油品优惠</span>
+                        <span class="value">{{ orderDetailList.price }}</span>
+                    </li>
+                    <li class="item">
+                        <span class="title">非油优惠</span>
+                        <span class="value">{{ orderDetailList.price }}</span>
+                    </li>
+                    <li class="item">
+                        <span class="title pricePayTitle">实付金额</span>
+                        <span class="value pricePay">￥102.00</span>
+                    </li>
+                </ul>
+                <el-divider direction = "vertical"></el-divider>
+                <div class="methods">
+                    <el-button class="btn" v-for="item in methodsList" 
+                    :key="item.id" :class="[ item.type == 1 ? 'wx' : '',  
+                    item.type == 2 ? 'ali' : '',  item.type == 5 ? 'scale' : '', 
+                     item.type == 6 ? 'oilCard' : ''] ">
+                        <img class="icon" :src="item.icon"/> {{ item.label }} 
+                    </el-button>
+                </div>
+            </div>
         </div>
+
+        <el-dialog v-model="dialogVisible"
+            title="Tips" width="30%" :before-close="handleClose" >
+            <span>This is a message</span>
+            <template #footer>
+            <span class="dialog-footer">
+                <el-button @click="dialogVisible = false">Cancel</el-button>
+                <el-button type="primary" @click="dialogVisible = false"
+                >Confirm</el-button
+                >
+            </span>
+            </template>
+        </el-dialog>
     </div>
 </template>
 
@@ -86,17 +152,18 @@ export default {
             tableHeaderDetail: [
                 { prop: "name", label: "商品名称", align: "center" },
                 { prop: "price", label: "单价", align: "center", width:"80px"},
-                { prop: "num", label: "数量", align: "center" },
-                { prop: "total", label: "小计", align: "center" },
+                // { prop: "num", label: "数量", align: "center" },
+                // { prop: "total", label: "小计", align: "center" },
             ],
             tableDataDetail: [],
-            code: ""
+            code: "",
+            orderDetailList: {},
+            methodsList: [],
+            dialogVisible: false
         });
 
         const getData = async () => {
             state.tableData = [
-                { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" },
-                { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" },
                 { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" },
                 { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" },
                 { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" }
@@ -146,10 +213,30 @@ export default {
                 { "name": "efef", total: "dg", num: "10", price: "10" },
                 { "name": "efef", total: "dg", num: "10", price: "10" }
             ];
+            state.methodsList = [
+                { label: "微信", icon: "wx", type:  "1" },
+                { label: "支付宝", icon: "wx" , type:  "2" },
+                { label: "现金", icon: "wx" , type: "3" },
+                { label: "电子卡", icon: "wx", type:  "4"  },
+                { label: "扫码付", icon: "wx", type: "5"  },
+                { label: "加油付", icon: "wx" , type: "6" }
+            ];
         };
 
         const deleteBtn = async (item) => {
             console.log(item);
+        };
+
+        const inputNum = (value) => {
+            if(value == undefined){
+                return;
+            } else {
+                return value.replace(/[^\d.]/g, "");
+            }
+        };
+
+        const gumBtn = () => {
+            state.dialogVisible = true;
         };
 
         onMounted(() => {
@@ -158,7 +245,9 @@ export default {
 
         return {
             ...toRefs(state),
-            deleteBtn
+            deleteBtn,
+            inputNum,
+            gumBtn
         };
     }
 };
@@ -186,7 +275,7 @@ export default {
                 height: 59px;
                 padding: 2px 12px 2px 8px; 
                 margin-bottom: 6px;
-                margin-right: 9.3px;
+                margin-right: 6px;
                 background: linear-gradient(180deg, #FFFFFF 0%, #E9E9E9 100%);
                 border-radius: 8px; 
                 box-sizing: border-box;
@@ -262,6 +351,7 @@ export default {
         height: 310px;
         border-radius: 8px;
         overflow-y: auto;
+        background: #fff;
         .tableData {
             width: 100%;
             padding: 0 20px;
@@ -337,6 +427,16 @@ export default {
                 .el-table_12_column_59{
                     color: #f56c6c;
                 }
+                .el-table_2_column_8 .cell{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .el-input__inner {
+                        text-align: center;
+                        border: none;
+                        background: none;
+                    }
+                }
             }
             .el-icon {
                 display: inline-block;
@@ -345,13 +445,13 @@ export default {
                 color: #f56c6c!important;
             }
         }
-        .mnemoniCode{
+        .mnemoniCode {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 8px 0;
             .codeInput{
-                width: 390px;
+                width: 80%;
                 height: 50px;
                 background: #fff;
                 border-radius: 8px;
@@ -364,9 +464,9 @@ export default {
                 }
             }
             .codeBtn{
-                width: 140px;
+                width: 18%;
                 height: 50px;
-                margin-left: 10px;
+                margin-left: 2%;
                 font-size: 14px;
                 font-weight: 500;
                 color: #545454;
@@ -374,6 +474,88 @@ export default {
                 border-radius: 8px;
             }
         }
+        .orderDetail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 237px;
+            padding: 0 20px;
+            background: #fff;
+            border-radius: 8px;
+            .order {
+                width: 50%;
+                padding: 18px 0;
+                .item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    padding: 3px 0;
+                    .title {
+                        font-size: 13px;
+                        font-weight: 400;
+                        color: #545454;
+                    }
+                    .value {
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: #545454;
+                    }
+                    .pricePayTitle {
+                        font-size: 16px;
+                        color: #1666E6;
+                    }
+                    .pricePay {
+                        font-size: 28px;
+                        color: #FF2D2D;
+                    }
+                }
+            }
+            .el-divider {
+                height: 200px;
+                background: #E8E8E8;
+                opacity: .5;
+            }
+            .methods {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
+                width: 48%;
+                margin: 0 auto;
+                text-align: center;
+                color: #fff;
+                .icon{
+                    
+                }
+                .btn {
+                    width: 110px;
+                    height: 60px;
+                    margin-bottom: 10px;
+                    margin-left: 0;
+                    color: #fff;
+                    border: none;
+                    background: linear-gradient(180deg, #FFBF44 0%, #FF9109 100%);
+                    border-radius: 8px;
+                }
+                .wx{
+                    background: linear-gradient(180deg, #46E56D 0%, #15C440 100%);
+                }
+                .ali{
+                    background: linear-gradient(180deg, #4BC7FF 0%, #00A1E9 100%);         
+                }
+                .scale{
+                    background: linear-gradient(180deg, #40ADFC 0%, #1E75F7 100%);
+                }
+                .oilCard {
+                    background: linear-gradient(180deg, #FF7F8E 0%, #FF2539 100%);
+                }
+            }
+        }
+    }
+    .el-button{
+        display: initial;
     }
 }
 
