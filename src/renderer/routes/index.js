@@ -21,14 +21,18 @@ const routes = [
     },
     {
         path: "/home",
-        name: "home",
         component: Home,
         meta: {
             title: '首页'
         },
         children: [
             {
-                path: "/Operating",
+                path: "/",
+                redirect: "/operating",
+                component: Operating,
+            },
+            {
+                path: "/operating",
                 component: Operating,
                 meta: {
                     title: '经营状况'
@@ -42,11 +46,11 @@ const routes = [
                 },
             },
             {
-                path: "/Operating",
+                path: "/fuel-card",
                 component: Operating,
             },
             {
-                path: "/Operating",
+                path: "/query-report",
                 component: Operating,
             },
             {

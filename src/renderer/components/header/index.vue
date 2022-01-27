@@ -81,7 +81,7 @@ export default {
             state.navMenuList= [
                 {
                     name: i18n.global.t('OperatingStatus'),
-                    frontPath: "/Operating",
+                    frontPath: "/operating",
                     icon: "tools"
                 },
                 {
@@ -91,12 +91,12 @@ export default {
                 },
                 {
                     name: i18n.global.t('FuelCardBusiness'),
-                    frontPath: "/Operating",
+                    frontPath: "/fuel-card",
                     icon: "CreditCard"
                 },
                 {
                     name: i18n.global.t('QueryReport'),
-                    frontPath: "/Operating",
+                    frontPath: "/query-report",
                     icon: "Tickets"
                 },
                 {

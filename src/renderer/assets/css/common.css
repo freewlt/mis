@@ -217,3 +217,13 @@ i {
     background: linear-gradient(44deg, #1B70F7 0%, #19B2DB 100%);
 }
 
+.el-dialog__header{
+    padding: 13px 20px;
+    background: #278BF6;
+}
+
+.el-dialog__header .el-dialog__title, .el-dialog__header .el-icon{
+    color: #fff;
+}
+
+

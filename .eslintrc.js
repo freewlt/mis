@@ -13,7 +13,7 @@ module.exports = {
     },
     "rules": {
         "indent": [2, 4, {SwitchCase: 1}],
-        // "quotes": [2, "double"],
+        // "quotes": [2, "single"],
         "consistent-return": [0, {"treatUndefinedAsUnspecified": true}],
         "curly": [2, "all"],
         "semi": [2, "always"],

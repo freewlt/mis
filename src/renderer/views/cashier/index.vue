@@ -4,7 +4,7 @@
             <div class="record">
                 <el-table :data="tableData" class="tableData">
                     <el-table-column v-for="(item, index) in tableHeader" :key="index" 
-                        :prop="item.prop" :label="item.label" :align="item.align" :width="item.width" />
+                        :prop="item.prop" :label="item.label" :align="item.align" />
                     <el-table-column label="金额" align="center">
                         <template #default="scope">
                             <span class="price">{{ scope.row.price }}</span>
@@ -35,6 +35,7 @@
         </div>
         <div class="rt">
             <div class="record detail">
+                <div class="tip">{{ tip }}</div>
                 <el-table :data="tableDataDetail" class="tableData">
                     <el-table-column v-for="(item, index) in tableHeaderDetail" :key="index" 
                         :prop="item.prop" :label="item.label" :align="item.align" :width="item.width" />
@@ -101,20 +102,20 @@
                         <img class="icon" :src="item.icon"/> {{ item.label }} 
                     </el-button>
                 </div>
+
+                <!--菜单按钮-->
+                <div class="menuList">
+                    <el-button class="btn" v-for="item in menuList" :key="item.id">
+                        {{ item.label }} 
+                    </el-button>
+                </div>
             </div>
         </div>
 
-        <el-dialog v-model="dialogVisible"
-            title="Tips" width="30%" :before-close="handleClose" >
-            <span>This is a message</span>
-            <template #footer>
-            <span class="dialog-footer">
-                <el-button @click="dialogVisible = false">Cancel</el-button>
-                <el-button type="primary" @click="dialogVisible = false"
-                >Confirm</el-button
-                >
-            </span>
-            </template>
+        <!--订单优惠弹窗-->
+        <el-dialog title="订单优惠"  v-model="diaVisiOrdDis" with="25%"
+        :modal-append-to-body="false">
+            <order-discount></order-discount>
         </el-dialog>
     </div>
 </template>
@@ -122,10 +123,11 @@
 <script>
 import { toRefs, reactive, onMounted } from "vue";
 import IconBox from "@/renderer/components/iconBox";
+import orderDiscount from "./orderDiscount";
 
 export default {
-    name: 'cashier',
-    components: { IconBox },
+    name: "cashier",
+    components: { IconBox, orderDiscount },
     setup(){
         const state = reactive({
             tableHeader: [
@@ -151,15 +153,20 @@ export default {
             ],
             tableHeaderDetail: [
                 { prop: "name", label: "商品名称", align: "center" },
-                { prop: "price", label: "单价", align: "center", width:"80px"},
-                // { prop: "num", label: "数量", align: "center" },
-                // { prop: "total", label: "小计", align: "center" },
+                { prop: "price", label: "单价", align: "center"},
             ],
             tableDataDetail: [],
             code: "",
             orderDetailList: {},
             methodsList: [],
-            dialogVisible: false
+            tip: "活动商品满3件减2元",
+            menuList: [
+                { label: "业务配置", type:  "1" },
+                { label: "订单补录", type:  "2" },
+                { label: "投币", type: "3" },
+                { label: "签到", type:  "4"  },
+            ],
+            diaVisiOrdDis: false
         });
 
         const getData = async () => {
@@ -236,7 +243,8 @@ export default {
         };
 
         const gumBtn = () => {
-            state.dialogVisible = true;
+            state.diaVisiOrdDis = true;
+            console.log(3);
         };
 
         onMounted(() => {
@@ -263,7 +271,7 @@ export default {
     box-sizing: border-box;
     overflow: hidden;
     .lf{
-        width: 44.4%;
+        width: 43.4%;
         .gum {
             display: flex;
             justify-content: flex-start;
@@ -271,7 +279,7 @@ export default {
             flex-wrap: wrap;
             padding-top: 12px;
             .gumItem {
-                width: 85px;
+                width: 15.7%;
                 height: 59px;
                 padding: 2px 12px 2px 8px; 
                 margin-bottom: 6px;
@@ -371,7 +379,7 @@ export default {
                 }
             }
         }
-        .el-table--small .el-table__cell{
+        .el-table .el-table__cell{
             padding: 17px 0;
         }
 
@@ -390,7 +398,7 @@ export default {
         display: flex;
         justify-content: flex-start;
         flex-direction: column;
-        width: 9%;
+        width: 10%;
         padding: 0 15px;
         margin: 0 auto;
         text-align: center;
@@ -420,14 +428,20 @@ export default {
         height: 100%;
         .detail {
             height: 400px;
-            .el-table--small .el-table__cell{
-                padding: 23px 0;
+            .tip {
+                width: 100%;
+                padding: 8px 26px 8px;
+                background: rgba(255,150,16, .05);
+                font-size: 13px;
+                font-weight: 500;
+                color: #FF9610;
+                box-sizing: border-box;
+            }
+            .el-table .el-table__cell{
+                padding: 18px 0;
             }
             tbody{
-                .el-table_12_column_59{
-                    color: #f56c6c;
-                }
-                .el-table_2_column_8 .cell{
+                td:nth-child(3) .cell{
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
@@ -436,6 +450,9 @@ export default {
                         border: none;
                         background: none;
                     }
+                }
+                td:nth-child(4) {
+                     color: #f56c6c;
                 }
             }
             .el-icon {
@@ -475,6 +492,7 @@ export default {
             }
         }
         .orderDetail {
+            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -483,6 +501,7 @@ export default {
             padding: 0 20px;
             background: #fff;
             border-radius: 8px;
+            box-sizing: border-box;
             .order {
                 width: 50%;
                 padding: 18px 0;
@@ -550,6 +569,31 @@ export default {
                 }
                 .oilCard {
                     background: linear-gradient(180deg, #FF7F8E 0%, #FF2539 100%);
+                }
+            }
+            .menuList {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 50%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
+                box-sizing: border-box;
+                padding: 12px 10px;
+                background: #565961;
+                box-shadow: 0px 3px 8px 0px rgba(15, 52, 93, 0.09);
+                border-radius: 8px;
+                .btn {
+                    width: 108px;
+                    height: 54px;
+                    margin: 8px 0;
+                    background: linear-gradient(180deg, #FFFFFF 0%, #E9E9E9 100%);
+                    border-radius: 8px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #545454;
                 }
             }
         }
