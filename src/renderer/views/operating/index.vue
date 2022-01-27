@@ -59,23 +59,23 @@
 </template>
 
 <script>
-import { reactive, toRefs, onMounted } from "vue";
-import echartBox from "./echart";
+import { reactive, toRefs, onMounted } from 'vue';
+import echartBox from './echart';
 
 export default {
-    name: "operating",
+    name: 'operating',
     components: { echartBox },
     setup() {
 
         const state = reactive({
             statistics: {
-                oil: "2吨／65笔"
+                oil: '2吨／65笔'
             },
             tableHeader: [
-                { prop: "time", label: "时间", align: "center" },
-                { prop: "gum", label: "油枪", align: "center"},
-                { prop: "oil", label: "油品", align: "center" },
-                { prop: "liter", label: "升数", align: "center" },
+                { prop: 'time', label: '时间', align: 'center' },
+                { prop: 'gum', label: '油枪', align: 'center'},
+                { prop: 'oil', label: '油品', align: 'center' },
+                { prop: 'liter', label: '升数', align: 'center' },
             ],
             tableData: [],
         });
@@ -90,9 +90,9 @@ export default {
 
         const getData = () => {
             state.tableData = [
-                { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" },
-                { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" },
-                { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" }
+                { 'time': 'efef', gum: 'dede', oil: 'dg', liter: '10', price: '10' },
+                { 'time': 'efef', gum: 'dede', oil: 'dg', liter: '10', price: '10' },
+                { 'time': 'efef', gum: 'dede', oil: 'dg', liter: '10', price: '10' }
             ];
         };
 

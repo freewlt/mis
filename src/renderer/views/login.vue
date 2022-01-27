@@ -11,15 +11,15 @@
 
 <script>
 import { reactive, toRefs } from 'vue';
-import { login } from "@/renderer/api/login";
+import { login } from '@/renderer/api/login';
 
 export default {
-    name: "login",
+    name: 'login',
     setup(){
         const state = reactive({    
             form: {
-                username: "",
-                password: "",
+                username: '',
+                password: '',
             },
         });
         const design = async () =>{
@@ -29,7 +29,7 @@ export default {
                 password: state.form.password,
             };
             login(loginForm).then(() => {
-                _this.$router.push("/home");
+                _this.$router.push('/home');
             }).catch(()=> {
                 alert(0);
             });

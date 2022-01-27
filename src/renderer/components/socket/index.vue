@@ -14,23 +14,23 @@
 
 <script>
 import { reactive, toRefs } from 'vue';
-import io from "socket.io-client";
-const socket = io.connect("ws://localhost:3000");
+import io from 'socket.io-client';
+const socket = io.connect('ws://localhost:3000');
 
 export default {
     name: 'socket',
     setup(){
         const state = reactive({
-            msg:"bbb",
-            backdata:"",
+            msg:'bbb',
+            backdata:'',
         });
         
         const sendMessage = async () => {
-            socket.emit("chat", state.msg);
-            socket.on("backmessage", data => {
+            socket.emit('chat', state.msg);
+            socket.on('backmessage', data => {
                 state.backdata = data;    
-                console.log(state.backdata,"state.backdata");
-                console.log(state, "stng");
+                console.log(state.backdata,'state.backdata');
+                console.log(state, 'stng');
             });
         };
 

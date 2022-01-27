@@ -121,112 +121,112 @@
 </template>
 
 <script>
-import { toRefs, reactive, onMounted } from "vue";
-import IconBox from "@/renderer/components/iconBox";
-import orderDiscount from "./orderDiscount";
+import { toRefs, reactive, onMounted } from 'vue';
+import IconBox from '@/renderer/components/iconBox';
+import orderDiscount from './orderDiscount';
 
 export default {
-    name: "cashier",
+    name: 'cashier',
     components: { IconBox, orderDiscount },
     setup(){
         const state = reactive({
             tableHeader: [
-                { prop: "time", label: "时间", align: "center" },
-                { prop: "gum", label: "油枪", align: "center"},
-                { prop: "oil", label: "油品", align: "center" },
-                { prop: "liter", label: "升数", align: "center" },
+                { prop: 'time', label: '时间', align: 'center' },
+                { prop: 'gum', label: '油枪', align: 'center'},
+                { prop: 'oil', label: '油品', align: 'center' },
+                { prop: 'liter', label: '升数', align: 'center' },
             ],
             tableData: [],
             gumList: [],
             btnList: [
-                {label: "订单1", value: "1", type: "orderFirst" },
-                {label: "订单2", value: "2", type: "orderSec" },
-                {label: "电子会员", value: "3", type: "eleMember" },
-                {label: "油卡会员", value: "4", type: "oilCardMember" },
-                {label: "手输油品", value: "3", type: "handleOil" },
-                {label: "修改支付", value: "3", type: "modifyPay" },
-                {label: "取消订单", value: "3", type: "cancel" },
-                {label: "非油退货", value: "3", type: "return" },
-                {label: "交易查询", value: "3", type: "orderQuery" },
-                {label: "积分兑换", value: "3", type: "integralExchange" },
-                {label: "更多", value: "3", type: "more" },
+                {label: '订单1', value: '1', type: 'orderFirst' },
+                {label: '订单2', value: '2', type: 'orderSec' },
+                {label: '电子会员', value: '3', type: 'eleMember' },
+                {label: '油卡会员', value: '4', type: 'oilCardMember' },
+                {label: '手输油品', value: '3', type: 'handleOil' },
+                {label: '修改支付', value: '3', type: 'modifyPay' },
+                {label: '取消订单', value: '3', type: 'cancel' },
+                {label: '非油退货', value: '3', type: 'return' },
+                {label: '交易查询', value: '3', type: 'orderQuery' },
+                {label: '积分兑换', value: '3', type: 'integralExchange' },
+                {label: '更多', value: '3', type: 'more' },
             ],
             tableHeaderDetail: [
-                { prop: "name", label: "商品名称", align: "center" },
-                { prop: "price", label: "单价", align: "center"},
+                { prop: 'name', label: '商品名称', align: 'center' },
+                { prop: 'price', label: '单价', align: 'center'},
             ],
             tableDataDetail: [],
-            code: "",
+            code: '',
             orderDetailList: {},
             methodsList: [],
-            tip: "活动商品满3件减2元",
+            tip: '活动商品满3件减2元',
             menuList: [
-                { label: "业务配置", type:  "1" },
-                { label: "订单补录", type:  "2" },
-                { label: "投币", type: "3" },
-                { label: "签到", type:  "4"  },
+                { label: '业务配置', type:  '1' },
+                { label: '订单补录', type:  '2' },
+                { label: '投币', type: '3' },
+                { label: '签到', type:  '4'  },
             ],
             diaVisiOrdDis: false
         });
 
         const getData = async () => {
             state.tableData = [
-                { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" },
-                { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" },
-                { "time": "efef", gum: "dede", oil: "dg", liter: "10", price: "10" }
+                { 'time': 'efef', gum: 'dede', oil: 'dg', liter: '10', price: '10' },
+                { 'time': 'efef', gum: 'dede', oil: 'dg', liter: '10', price: '10' },
+                { 'time': 'efef', gum: 'dede', oil: 'dg', liter: '10', price: '10' }
             ];
             state.gumList = [
-                { oil: "92#", gumNo: "1", price: "200.00" },
-                { oil: "92#", gumNo: "2", price: "200.00" },
-                { oil: "92#", gumNo: "3", price: "200.00" },
-                { oil: "92#", gumNo: "4", price: "200.00" },
-                { oil: "92#", gumNo: "5", price: "200.00" },
-                { oil: "92#", gumNo: "6", price: "200.00" },
-                { oil: "92#", gumNo: "7", price: "200.00" },
-                { oil: "92#", gumNo: "8", price: "200.00" },
-                { oil: "92#", gumNo: "9", price: "200.00" },
-                { oil: "92#", gumNo: "1", price: "200.00" },
-                { oil: "92#", gumNo: "2", price: "200.00" },
-                { oil: "92#", gumNo: "3", price: "200.00" },
-                { oil: "92#", gumNo: "4", price: "200.00" },
-                { oil: "92#", gumNo: "5", price: "200.00" },
-                { oil: "92#", gumNo: "6", price: "200.00" },
-                { oil: "92#", gumNo: "7", price: "200.00" },
-                { oil: "92#", gumNo: "8", price: "200.00" },
-                { oil: "92#", gumNo: "9", price: "200.00" },
-                { oil: "92#", gumNo: "1", price: "200.00" },
-                { oil: "92#", gumNo: "2", price: "200.00" },
-                { oil: "92#", gumNo: "3", price: "200.00" },
-                { oil: "92#", gumNo: "4", price: "200.00" },
-                { oil: "92#", gumNo: "5", price: "200.00" },
-                { oil: "92#", gumNo: "6", price: "200.00" },
-                { oil: "92#", gumNo: "7", price: "200.00" },
-                { oil: "92#", gumNo: "8", price: "200.00" },
-                { oil: "92#", gumNo: "9", price: "200.00" },
-                { oil: "92#", gumNo: "7", price: "200.00" },
-                { oil: "92#", gumNo: "8", price: "200.00" },
-                { oil: "92#", gumNo: "9", price: "200.00" },
-                { oil: "92#", gumNo: "7", price: "200.00" },
-                { oil: "92#", gumNo: "8", price: "200.00" },
-                { oil: "92#", gumNo: "33", price: "200.00" },
-                { oil: "92#", gumNo: "7", price: "200.00" },
-                { oil: "92#", gumNo: "8", price: "200.00" },
-                { oil: "92#", gumNo: "36", price: "200.00" },
+                { oil: '92#', gumNo: '1', price: '200.00' },
+                { oil: '92#', gumNo: '2', price: '200.00' },
+                { oil: '92#', gumNo: '3', price: '200.00' },
+                { oil: '92#', gumNo: '4', price: '200.00' },
+                { oil: '92#', gumNo: '5', price: '200.00' },
+                { oil: '92#', gumNo: '6', price: '200.00' },
+                { oil: '92#', gumNo: '7', price: '200.00' },
+                { oil: '92#', gumNo: '8', price: '200.00' },
+                { oil: '92#', gumNo: '9', price: '200.00' },
+                { oil: '92#', gumNo: '1', price: '200.00' },
+                { oil: '92#', gumNo: '2', price: '200.00' },
+                { oil: '92#', gumNo: '3', price: '200.00' },
+                { oil: '92#', gumNo: '4', price: '200.00' },
+                { oil: '92#', gumNo: '5', price: '200.00' },
+                { oil: '92#', gumNo: '6', price: '200.00' },
+                { oil: '92#', gumNo: '7', price: '200.00' },
+                { oil: '92#', gumNo: '8', price: '200.00' },
+                { oil: '92#', gumNo: '9', price: '200.00' },
+                { oil: '92#', gumNo: '1', price: '200.00' },
+                { oil: '92#', gumNo: '2', price: '200.00' },
+                { oil: '92#', gumNo: '3', price: '200.00' },
+                { oil: '92#', gumNo: '4', price: '200.00' },
+                { oil: '92#', gumNo: '5', price: '200.00' },
+                { oil: '92#', gumNo: '6', price: '200.00' },
+                { oil: '92#', gumNo: '7', price: '200.00' },
+                { oil: '92#', gumNo: '8', price: '200.00' },
+                { oil: '92#', gumNo: '9', price: '200.00' },
+                { oil: '92#', gumNo: '7', price: '200.00' },
+                { oil: '92#', gumNo: '8', price: '200.00' },
+                { oil: '92#', gumNo: '9', price: '200.00' },
+                { oil: '92#', gumNo: '7', price: '200.00' },
+                { oil: '92#', gumNo: '8', price: '200.00' },
+                { oil: '92#', gumNo: '33', price: '200.00' },
+                { oil: '92#', gumNo: '7', price: '200.00' },
+                { oil: '92#', gumNo: '8', price: '200.00' },
+                { oil: '92#', gumNo: '36', price: '200.00' },
             ];
             state.tableDataDetail = [
-                { "name": "efef", total: "dg", num: "10", price: "10" },
-                { "name": "efef", total: "dg", num: "10", price: "10" },
-                { "name": "efef", total: "dg", num: "10", price: "10" },
-                { "name": "efef", total: "dg", num: "10", price: "10" },
-                { "name": "efef", total: "dg", num: "10", price: "10" }
+                { 'name': 'efef', total: 'dg', num: '10', price: '10' },
+                { 'name': 'efef', total: 'dg', num: '10', price: '10' },
+                { 'name': 'efef', total: 'dg', num: '10', price: '10' },
+                { 'name': 'efef', total: 'dg', num: '10', price: '10' },
+                { 'name': 'efef', total: 'dg', num: '10', price: '10' }
             ];
             state.methodsList = [
-                { label: "微信", icon: "wx", type:  "1" },
-                { label: "支付宝", icon: "wx" , type:  "2" },
-                { label: "现金", icon: "wx" , type: "3" },
-                { label: "电子卡", icon: "wx", type:  "4"  },
-                { label: "扫码付", icon: "wx", type: "5"  },
-                { label: "加油付", icon: "wx" , type: "6" }
+                { label: '微信', icon: 'wx', type:  '1' },
+                { label: '支付宝', icon: 'wx' , type:  '2' },
+                { label: '现金', icon: 'wx' , type: '3' },
+                { label: '电子卡', icon: 'wx', type:  '4'  },
+                { label: '扫码付', icon: 'wx', type: '5'  },
+                { label: '加油付', icon: 'wx' , type: '6' }
             ];
         };
 
@@ -238,7 +238,7 @@ export default {
             if(value == undefined){
                 return;
             } else {
-                return value.replace(/[^\d.]/g, "");
+                return value.replace(/[^\d.]/g, '');
             }
         };
 

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Head from "../components/header";
+import Head from '../components/header';
 // import HandleFile from "../components/file";
 // import EleStore from "../components/eleStore";
 // import Socket from "../components/socket";

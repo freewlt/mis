@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import * as Icons from "@element-plus/icons-vue";
+import { defineComponent } from 'vue';
+import * as Icons from '@element-plus/icons-vue';
 
 export default defineComponent({
     components: Icons,
-    name: "iconBox",
+    name: 'iconBox',
     props: {
         name: {
             type: String,
@@ -18,11 +18,11 @@ export default defineComponent({
         },
         size: {
             type: String,
-            default: "",
+            default: '',
         },
         color: {
             type: String,
-            default: "",
+            default: '',
         },
     },
 });

@@ -23,18 +23,18 @@
 </template>
 
 <script>
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs } from 'vue';
 // import type { ElForm } from "element-plus";
 
 // import IconBox from "@/renderer/components/iconBox";
-const carPng = require("../../assets/images/cashier/carSel.png");
-const carPngSel = require("../../assets/images/cashier/carSel.png");
-const mobilePng = require("../../assets/images/cashier/mobile.png");
-const mobilePngSel = require("../../assets/images/cashier/mobileSel.png");
-const taxiPng = require("../../assets/images/cashier/taxi.png");
-const taxiPngSel = require("../../assets/images/cashier/taxiSel.png");
-const specialPng = require("../../assets/images/cashier/specialTrain.png");
-const specialPngSel = require("../../assets/images/cashier/specialTrainSel.png");
+const carPng = require('../../assets/images/cashier/carSel.png');
+const carPngSel = require('../../assets/images/cashier/carSel.png');
+const mobilePng = require('../../assets/images/cashier/mobile.png');
+const mobilePngSel = require('../../assets/images/cashier/mobileSel.png');
+const taxiPng = require('../../assets/images/cashier/taxi.png');
+const taxiPngSel = require('../../assets/images/cashier/taxiSel.png');
+const specialPng = require('../../assets/images/cashier/specialTrain.png');
+const specialPngSel = require('../../assets/images/cashier/specialTrainSel.png');
 
 export default {
     name: 'orderDiscount',
@@ -44,10 +44,10 @@ export default {
 
         const state = reactive({
             typeList: [
-                { label: "汽车", value: 1, pic: carPng, picSel: carPngSel },
-                { label: "摩托车", value: 2, pic: mobilePng, picSel: mobilePngSel },
-                { label: "出租车", value: 3, pic: taxiPng, picSel: taxiPngSel },
-                { label: "专车", value: 4, pic: specialPng, picSel: specialPngSel },
+                { label: '汽车', value: 1, pic: carPng, picSel: carPngSel },
+                { label: '摩托车', value: 2, pic: mobilePng, picSel: mobilePngSel },
+                { label: '出租车', value: 3, pic: taxiPng, picSel: taxiPngSel },
+                { label: '专车', value: 4, pic: specialPng, picSel: specialPngSel },
             ],
             curIdx: 0,
         });

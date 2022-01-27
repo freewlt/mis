@@ -43,9 +43,9 @@
 
 <script>
 import { reactive, toRefs, onMounted } from 'vue';
-import { useI18n } from "vue-i18n";
+import { useI18n } from 'vue-i18n';
 import i18n from '../../language/i18n.js';
-import IconBox from "../iconBox";
+import IconBox from '../iconBox';
 
 export default {
     name: 'headBox',
@@ -55,23 +55,23 @@ export default {
     setup(){
         const { locale } = useI18n();
         const state = reactive({
-            activeIndex: "1",
+            activeIndex: '1',
             navMenuList: [],
             shiftDetail: {
-                name: "007010 - 赵炎",
-                shift: "中班 - 已上班",
-                shiftNum: "班次号：201808081234",
-                shiftStatus: "上班"
+                name: '007010 - 赵炎',
+                shift: '中班 - 已上班',
+                shiftNum: '班次号：201808081234',
+                shiftStatus: '上班'
             },
-            language: "中文",
+            language: '中文',
             dropdownList: [
                 {
-                    label: "中文",
-                    value: "1",
+                    label: '中文',
+                    value: '1',
                 },
                 {
-                    label: "English",
-                    value: "2",
+                    label: 'English',
+                    value: '2',
                 },
             ],
             status: '2',
@@ -81,39 +81,39 @@ export default {
             state.navMenuList= [
                 {
                     name: i18n.global.t('OperatingStatus'),
-                    frontPath: "/operating",
-                    icon: "tools"
+                    frontPath: '/operating',
+                    icon: 'tools'
                 },
                 {
                     name: i18n.global.t('CashierBusiness'),
-                    frontPath: "/cashier",
-                    icon: "WalletFilled"
+                    frontPath: '/cashier',
+                    icon: 'WalletFilled'
                 },
                 {
                     name: i18n.global.t('FuelCardBusiness'),
-                    frontPath: "/fuel-card",
-                    icon: "CreditCard"
+                    frontPath: '/fuel-card',
+                    icon: 'CreditCard'
                 },
                 {
                     name: i18n.global.t('QueryReport'),
-                    frontPath: "/query-report",
-                    icon: "Tickets"
+                    frontPath: '/query-report',
+                    icon: 'Tickets'
                 },
                 {
                     name: i18n.global.t('SysConfig'),
-                    frontPath: "/system",
-                    icon: "Setting"
+                    frontPath: '/system',
+                    icon: 'Setting'
                 },
             ];
         };
 
         const handleClick = async (c) => {
-            if(c === "1"){
-                state.language = "中文";
-                locale.value = "zh";
+            if(c === '1'){
+                state.language = '中文';
+                locale.value = 'zh';
             } else {
-                state.language = "英文";
-                locale.value = "en";
+                state.language = '英文';
+                locale.value = 'en';
             }
             state.status = c;
             getData();

@@ -110,19 +110,19 @@
 </template>
 
 <script>
-import { onMounted, reactive, toRefs } from "vue";
-import * as echarts from "echarts";
-import "echarts-liquidfill";
+import { onMounted, reactive, toRefs } from 'vue';
+import * as echarts from 'echarts';
+import 'echarts-liquidfill';
 
 export default {
-    name: "echartBox",
+    name: 'echartBox',
     setup() {
 
         const state = reactive({
             payMethodList: [],
             memberRateList: [],
             detail: {
-                oilVolume: "1000"
+                oilVolume: '1000'
             }
         });
 
@@ -138,7 +138,7 @@ export default {
                     textStyle: { //主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
                         fontSize: 20,
                         fontWeight: '500',
-                        "color": "#333"
+                        'color': '#333'
                     },
                 },
                 legend: {
@@ -172,7 +172,7 @@ export default {
                 ]
             });
             
-            window.addEventListener("resize", () => { 
+            window.addEventListener('resize', () => { 
                 myChart.resize();  
             });
         };
@@ -188,7 +188,7 @@ export default {
                     textStyle: { //主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
                         fontSize: 20,
                         fontWeight: '500',
-                        color: "#333"
+                        color: '#333'
                     },
                 },
                 legend: {
@@ -221,7 +221,7 @@ export default {
                     }
                 ]
             });
-            window.addEventListener("resize", () => { 
+            window.addEventListener('resize', () => { 
                 myChart.resize();  
             });
         };
@@ -322,7 +322,7 @@ export default {
                     }
                 }]
             });
-            window.addEventListener("resize", () => { 
+            window.addEventListener('resize', () => { 
                 myChart3.resize();  
                 myChart4.resize();  
                 myChart5.resize();  

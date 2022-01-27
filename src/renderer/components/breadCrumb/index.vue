@@ -11,8 +11,8 @@
 <script>
 
 export default {
-    name: "breadCrumbBox",
-    props: ["breadList"],
+    name: 'breadCrumbBox',
+    props: ['breadList'],
 };
 
 </script>

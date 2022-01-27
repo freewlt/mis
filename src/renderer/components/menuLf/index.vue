@@ -23,7 +23,7 @@
 
 <script>
 import { reactive, toRefs, onMounted } from 'vue';
-import IconBox from "../iconBox";
+import IconBox from '../iconBox';
 
 export default {
     name: 'menuLf',
@@ -36,7 +36,7 @@ export default {
     setup(props, context){
 
         const state = reactive({
-            activeIndex: "1",
+            activeIndex: '1',
             // list: [],
         });
 

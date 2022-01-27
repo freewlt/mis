@@ -23,12 +23,12 @@ export default {
             // let myPath = path.join(__filename, '/config/config.json');
             // console.log(myPath," may");
             // let file = process.cwd() + "/public/config/config.json";
-            let file = process.cwd() + "/public/config/config.json";
-            fs.readFile(file, "utf-8", (err, data) => {
+            let file = process.cwd() + '/public/config/config.json';
+            fs.readFile(file, 'utf-8', (err, data) => {
                 if (err) {
                     throw err;
                 }
-                console.log(data,"data");
+                console.log(data,'data');
             });
         };
         const whiteFile = async () => {
@@ -45,25 +45,25 @@ export default {
 
             // ipc.send("writeFile", data);
             let data = {
-                "aa":"10sdf 1",
-                "mc":"202sdg ",
-                "c0c":"303sdf ",
+                'aa':'10sdf 1',
+                'mc':'202sdg ',
+                'c0c':'303sdf ',
             };
             let jsonObj = JSON.stringify(data);
-            let file = process.cwd() + "/public/config/config.json";
+            let file = process.cwd() + '/public/config/config.json';
             console.log(file);
             fs.writeFile(file, jsonObj, { 'flag': 'a' }, (err) => {
                 if (err) {
                     throw err;
                 }
-                console.log(jsonObj, "jsonObj");
+                console.log(jsonObj, 'jsonObj');
 
                 // 写入成功后读取测试
-                fs.readFile(file, "utf-8", (err, data) => {
+                fs.readFile(file, 'utf-8', (err, data) => {
                     if (err) {
                         throw err;
                     }
-                    console.log(data,"data");
+                    console.log(data,'data');
                 });
             });
         };

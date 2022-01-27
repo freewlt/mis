@@ -1,28 +1,28 @@
 module.exports = {
     root: true,
     env: {
-        "node": true,
-        "browser": true,
+        'node': true,
+        'browser': true,
     },
     extends: [
-        "plugin:vue/essential",
-        "eslint:recommended"
+        'plugin:vue/essential',
+        'eslint:recommended'
     ],
-    "parserOptions": {
-        "parser": "babel-eslint"
+    'parserOptions': {
+        'parser': 'babel-eslint'
     },
-    "rules": {
-        "indent": [2, 4, {SwitchCase: 1}],
-        "quotes": [1, "single"],
-        "consistent-return": [0, {"treatUndefinedAsUnspecified": true}],
-        "curly": [2, "all"],
-        "semi": [2, "always"],
-        "space-before-function-paren": [2, {
-            "anonymous": "never",
-            "named": "never",
-            "asyncArrow": "always"
+    'rules': {
+        'indent': [2, 4, {SwitchCase: 1}],
+        'quotes': [1, 'single'],
+        'consistent-return': [0, {'treatUndefinedAsUnspecified': true}],
+        'curly': [2, 'all'],
+        'semi': [2, 'always'],
+        'space-before-function-paren': [2, {
+            'anonymous': 'never',
+            'named': 'never',
+            'asyncArrow': 'always'
         }],
-        "no-tabas": "off"
+        'no-tabas': 'off'
     }
 };
 

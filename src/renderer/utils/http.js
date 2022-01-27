@@ -2,8 +2,8 @@
  * Created by Administrator on 2022/1/14.
  */
 
-import axios from "axios";
-axios.defaults.adapter = require("axios/lib/adapters/http");
+import axios from 'axios';
+axios.defaults.adapter = require('axios/lib/adapters/http');
 //  import qs from "qs";
 
 const config = {
@@ -21,13 +21,13 @@ const service = axios.create(config);
 service.interceptors.request.use(
     config => {
         let token;
-        let getToken = sessionStorage.getItem("token");
+        let getToken = sessionStorage.getItem('token');
         if(getToken){
-            token = JSON.parse(sessionStorage.getItem("token")).access_token;
+            token = JSON.parse(sessionStorage.getItem('token')).access_token;
         }
         if(token){
-            config.headers["Authorization"] = "Bearer " + token;
-            sessionStorage.setItem("token", getToken);
+            config.headers['Authorization'] = 'Bearer ' + token;
+            sessionStorage.setItem('token', getToken);
         }
         // 解决query无法传递数组的问题
         //  config.paramsSerializer = (params) => qs.stringify(params, {

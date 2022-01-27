@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Store  from "electron-store";
+import Store  from 'electron-store';
 const store  = new Store();
 
 export default {
@@ -13,9 +13,9 @@ export default {
     setup(){
 
         const saveBtn = async () => {
-            store.set("unicorn", "dsg");
-            const a = store.get("unicorn");
-            console.log(a, "获取本地存储内容");
+            store.set('unicorn', 'dsg');
+            const a = store.get('unicorn');
+            console.log(a, '获取本地存储内容');
         };
 
         return {

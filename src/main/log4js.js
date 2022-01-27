@@ -1,13 +1,13 @@
 
-import log4js from 'log4js'
-import path from 'path'
+import log4js from 'log4js';
+import path from 'path';
 import {
     app
-} from 'electron'
+} from 'electron';
  
 // 日志文件的输出路径，这里我们选择userData path下的logs
 // 在我的电脑上是C:\Users\xxx\AppData\Roaming\myApp\logs
-const LOG_PATH = path.join(app.getPath('userData'), 'logs')
+const LOG_PATH = path.join(app.getPath('userData'), 'logs');
 
 log4js.configure({
     appenders: {
@@ -23,16 +23,16 @@ log4js.configure({
             alwaysIncludePattern: true // 始终包含pattern
         },
         httpLog: { 
-            type: "dateFile", 
+            type: 'dateFile', 
             filename: path.join(LOG_PATH, 'http'), 
-            pattern: ".yyyy-MM-dd.log", 
+            pattern: '.yyyy-MM-dd.log', 
             keepFileExt: true, // 文件名是否需要加".log"后缀
             alwaysIncludePattern: true
         },
         renderProccessLog: {
-            type: "dateFile", 
+            type: 'dateFile', 
             filename: path.join(LOG_PATH, 'renderer'), 
-            pattern: ".yyyy-MM-dd.log", 
+            pattern: '.yyyy-MM-dd.log', 
             keepFileExt: true,
             alwaysIncludePattern: true
         },
@@ -53,8 +53,8 @@ log4js.configure({
             filename: path.join(LOG_PATH, 'error.log')
         },
         error: { 
-            type: "logLevelFilter", 
-            level: "error",
+            type: 'logLevelFilter', 
+            level: 'error',
             appender: 'errorLog' 
         }
     },
@@ -62,27 +62,27 @@ log4js.configure({
     categories: {
         date: {
             appenders: ['out', 'alldateFileLog'], 
-            level: "debug" 
+            level: 'debug' 
         },
         http: { 
             appenders: ['out', 'httpLog'], 
-            level: "debug" 
+            level: 'debug' 
         },
         main: {
             appenders: ['out', 'mainProccessLog'], 
-            level: "debug"
+            level: 'debug'
         },
         renderer: {
             appenders: ['renderProccessLog'], 
-            level: "debug"
+            level: 'debug'
         },
         crash: {
             appenders: ['out', 'crashLog'], 
-            level: "debug"
+            level: 'debug'
         },
         default: {
             appenders: ['out', 'alldateFileLog'], 
-            level: "debug" 
+            level: 'debug' 
         }
     }
 });
@@ -94,4 +94,4 @@ export default {
     renderer: log4js.getLogger('renderer'),
     crash: log4js.getLogger('crash'),
     LOG_PATH
-}
+};

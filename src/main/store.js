@@ -1,2 +1,2 @@
-import Store from "electron-store";
+import Store from 'electron-store';
 Store.initRenderer();
