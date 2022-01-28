@@ -29,7 +29,8 @@
         </div>
         <div class="center">
             <el-button class="btn" v-for="item in btnList" :key="item.id" 
-            :class="[item.type == 'eleMember' ? 'eleMember' : '',  item.type === 'oilCardMember' ? 'oilCardMember' : '']">
+            :class="[item.type == 'eleMember' ? 'eleMember' : '',  item.type === 'oilCardMember' ? 'oilCardMember' : '']"
+            @click="btnTool">
                 {{ item.label }}
             </el-button>
         </div>
@@ -117,17 +118,24 @@
         :modal-append-to-body="false">
             <order-discount></order-discount>
         </el-dialog>
+
+         <!--手输油品-->
+        <el-dialog title="手输油品"  v-model="diaVisiHandOil" with="25%"
+        :modal-append-to-body="false">
+            <handle-oil></handle-oil>
+        </el-dialog>
     </div>
 </template>
 
 <script>
 import { toRefs, reactive, onMounted } from 'vue';
 import IconBox from '@/renderer/components/iconBox';
-import orderDiscount from './orderDiscount';
+import OrderDiscount from './orderDiscount';
+import HandleOil from './handleOil';
 
 export default {
     name: 'cashier',
-    components: { IconBox, orderDiscount },
+    components: { IconBox, OrderDiscount, HandleOil },
     setup(){
         const state = reactive({
             tableHeader: [
@@ -143,13 +151,13 @@ export default {
                 {label: '订单2', value: '2', type: 'orderSec' },
                 {label: '电子会员', value: '3', type: 'eleMember' },
                 {label: '油卡会员', value: '4', type: 'oilCardMember' },
-                {label: '手输油品', value: '3', type: 'handleOil' },
-                {label: '修改支付', value: '3', type: 'modifyPay' },
-                {label: '取消订单', value: '3', type: 'cancel' },
-                {label: '非油退货', value: '3', type: 'return' },
-                {label: '交易查询', value: '3', type: 'orderQuery' },
-                {label: '积分兑换', value: '3', type: 'integralExchange' },
-                {label: '更多', value: '3', type: 'more' },
+                {label: '手输油品', value: '5', type: 'handleOil' },
+                {label: '修改支付', value: '6', type: 'modifyPay' },
+                {label: '取消订单', value: '7', type: 'cancel' },
+                {label: '非油退货', value: '8', type: 'return' },
+                {label: '交易查询', value: '9', type: 'orderQuery' },
+                {label: '积分兑换', value: '10', type: 'integralExchange' },
+                {label: '更多', value: '11', type: 'more' },
             ],
             tableHeaderDetail: [
                 { prop: 'name', label: '商品名称', align: 'center' },
@@ -166,7 +174,8 @@ export default {
                 { label: '投币', type: '3' },
                 { label: '签到', type:  '4'  },
             ],
-            diaVisiOrdDis: false
+            diaVisiOrdDis: false,
+            diaVisiHandOil: false
         });
 
         const getData = async () => {
@@ -247,6 +256,13 @@ export default {
             console.log(3);
         };
 
+        const btnTool = (item) => {
+            if (item.value == 5) {
+                state.diaVisiHandOil = true;
+            }
+            console.log(item);
+        };
+
         onMounted(() => {
             getData();
         });
@@ -255,7 +271,8 @@ export default {
             ...toRefs(state),
             deleteBtn,
             inputNum,
-            gumBtn
+            gumBtn,
+            btnTool
         };
     }
 };

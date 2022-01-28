@@ -132,18 +132,18 @@ export default {
     display: none;
 }
 
-.btnGroup {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    .el-form-item__content{
-        justify-content: center;
-        margin-left: 0!important;
-        .el-button {
-            width: 96px;
-            height: 34px;
-            border-radius: 4px;
-        }
-    }
-}
+// .btnGroup {
+//     width: 100%;
+//     margin: 0 auto;
+//     text-align: center;
+//     .el-form-item__content{
+//         justify-content: center;
+//         margin-left: 0!important;
+//         .el-button {
+//             width: 96px;
+//             height: 34px;
+//             border-radius: 4px;
+//         }
+//     }
+// }
 </style>

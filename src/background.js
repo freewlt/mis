@@ -8,6 +8,10 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 import './main/readfile';
 import './main/store';
 import logger from './main/log4js';
+// 右键菜单
+// const remote = require('@electron/remote/main');
+// remote.initialize();
+// import './main/contextMenu';
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -40,6 +44,9 @@ async function createWindow() {
         win.loadURL('app://./index.html');
         // win.loadFile(path.join(__dirname,"index.html"));
     }
+
+    // 启用remote模块
+    remote.enable(win.webContents);
     createMenu();
 }
 
