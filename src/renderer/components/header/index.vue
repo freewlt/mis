@@ -46,6 +46,7 @@ import { reactive, toRefs, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import i18n from '../../language/i18n.js';
 import IconBox from '../iconBox';
+// import { useRouter } from 'vue-router';
 
 export default {
     name: 'headBox',
@@ -121,7 +122,9 @@ export default {
 
         const handleSelect = async () => {};
 
+        // const router = useRouter();
         onMounted(async () => {
+            // router.push('login');
             getData();
         });
         

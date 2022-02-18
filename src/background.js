@@ -46,7 +46,7 @@ async function createWindow() {
     }
 
     // 启用remote模块
-    remote.enable(win.webContents);
+    // remote.enable(win.webContents);
     createMenu();
 }
 

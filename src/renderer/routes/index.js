@@ -13,7 +13,7 @@ const Cashier = () => import('@/renderer/views/cashier');
 const routes = [
     {
         path: '/',
-        component: Home,
+        component: Login,
     },
     {
         path: '/login',
@@ -27,7 +27,7 @@ const routes = [
         },
         children: [
             {
-                path: '/',
+                path: '',
                 redirect: '/operating',
                 component: Operating,
             },

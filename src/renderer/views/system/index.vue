@@ -1,9 +1,11 @@
 <template>
-    <div class="system">
-        <Menu-Lf :list = "list"></Menu-Lf>
-        <div class="rightCon">
-            <bread-crumb :breadList="breadList"></bread-crumb>
-            <router-view class="con"></router-view>
+    <div class="systemBox">
+        <div class = "system">
+            <Menu-Lf :list = "list"></Menu-Lf>
+            <div class="rightCon">
+                <bread-crumb :breadList="breadList"></bread-crumb>
+                <router-view class="con"></router-view>
+            </div>
         </div>
     </div>
 </template>
@@ -16,7 +18,7 @@ import MenuLf from '../../components/menuLf/index';
 import BreadCrumb from '../../components/breadCrumb';
 
 export default {
-    name: 'system',
+    name: 'systemBox',
     components: {
         MenuLf,
         BreadCrumb
@@ -71,21 +73,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.systemBox{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
 .system{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
     height: 100%;
-    padding: 13px 20px 0 0;
-    box-sizing: border-box;
     background: #f5f5f5;
     .rightCon{
         width: 100%;
-        height: 100%;
+        height: calc(100% - 123px);
         padding: 0 0 0 20px;
         margin: 0 auto;
         border-radius: 8px;
+        background: #fff;
+        overflow-x: hidden;
+        overflow-y: auto;
         .con {
             width: 100%;
             height: 100%;
